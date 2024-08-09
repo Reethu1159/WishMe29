@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Wishes Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('assets/Background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 5px; /* Reduced gap */
+            position: relative;
+        }
+
+        .header img {
+            width: 360px;
+            height: 354px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .header h1 {
+            font-size: 40px;
+            color: rgba(10, 10, 10, 0.7);
+            background: rgba(0, 0, 0, 0.3);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            margin-top: 5px; /* Reduced gap */
+        }
+
+        .header p {
+            font-size: 18px;
+            line-height: 28px;
+            color: rgba(255, 255, 255, 0.7);
+            background: rgba(0, 0, 0, 0.3);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-top: 5px; /* Reduced gap */
+        }
+
+        .about {
+            margin: 10px 0; /* Reduced gap */
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 30px;
+            color: rgba(0, 0, 0, 0.7);
+            background: rgba(255, 255, 255, 0.3);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        .about p {
+            font-size: 18px;
+            line-height: 28px;
+            color: rgba(0, 0, 0, 0.7);
+            background: rgba(255, 255, 255, 0.3);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        hr {
+            margin: 10px 0; /* Reduced gap */
+        }
+
+        h2 {
+            font-size: 30px;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            margin: 10px 0 5px;
+        }
+
+        input, button {
+            padding: 10px;
+            margin-bottom: 20px;
+            width: 80%;
+            max-width: 300px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 22px);
+        }
+
+        button {
+            background: #191a1c;
+            color: #eee7e7;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #80868c;
+        }
+
+        .card-container {
+            perspective: 800px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .card {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+        }
+
+        .card-container:hover .card {
+            transform: rotateY(180deg);
+        }
+
+        .front, .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #0c0101;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            color: #000707;
+        }
+
+        .front {
+            background-color: #abd6e8;
+        }
+
+        .back {
+            transform: rotateY(180deg);
+            background-image: url('assets/Greeting background.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: #030303;
+        }
+
+        .back h2 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        .back p {
+            margin: 10px 0;
+            font-size: 24px;
+        }
+
+        .back .from {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 20px;
+        }
+
+        .share-link {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="assets/Logo1.png" alt="Logo">
+        <h1>HAPPY BIRTHDAY</h1>
+        <p>Welcome to "Happy Birthday Wishes," a delightful space where heartfelt birthday greetings come to life! Personalize your wishes with custom messages, celebrate with awesome greetings, and enjoy interactive features that make every birthday memorable. Join us in spreading joy and love on this special day!</p>
+    </div>
+    <hr>
+    <h2>Generate Birthday Wishes</h2>
+
+    <div class="container">
+        <form id="birthdayForm">
+            <label for="recipientName">Recipient's Name:</label>
+            <input type="text" id="recipientName" name="recipientName" required>
+            <label for="customMessage">Custom Message (20-25 words):</label>
+            <input type="text" id="customMessage" name="customMessage" maxlength="140" required>
+            <label for="fromName">From:</label>
+            <input type="text" id="fromName" name="fromName" required>
+            <button type="submit">Generate Card</button>
+        </form>
+
+        <div class="card-container">
+            <div class="card">
+                <div class="front">
+                    <h2>Tap to Open</h2>
+                </div>
+                <div class="back">
+                    <h2>Happy Birthday!</h2>
+                    <p id="recipientText"></p>
+                    <p id="customText"></p>
+                    <div class="from" id="fromText"></div>
+                </div>
+            </div>
+        </div>
+        <div class="share-link">
+            <a id="shareLink" href="#">Share this card</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('birthdayForm').onsubmit = function(event) {
+            event.preventDefault();
+            var recipientName = document.getElementById('recipientName').value;
+            var message = document.getElementById('customMessage').value;
+            var fromName = document.getElementById('fromName').value;
+
+            document.getElementById('recipientText').innerText = recipientName;
+            document.getElementById('customText').innerText = message;
+            document.getElementById('fromText').innerText = 'From: ' + fromName;
+
+            var shareLink = document.getElementById('shareLink');
+            var url = new URL(window.location.href);
+            url.searchParams.set('recipientName', recipientName);
+            url.searchParams.set('message', message);
+            url.searchParams.set('fromName', fromName);
+            shareLink.href = url.toString();
+            shareLink.style.display = 'block';
+        };
+
+        window.onload = function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var recipientName = urlParams.get('recipientName');
+            var message = urlParams.get('message');
+            var fromName = urlParams.get('fromName');
+
+            if (recipientName && message && fromName) {
+                document.getElementById('recipientText').innerText = recipientName;
+                document.getElementById('customText').innerText = message;
+                document.getElementById('fromText').innerText = 'From: ' + fromName;
+            }
+        };
+    </script>
+</body>
+</html>
